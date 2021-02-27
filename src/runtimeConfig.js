@@ -12,6 +12,7 @@ let runtimeConfig = {
 	excludeRecentSearch: undefined,
 	action: undefined,
 	rtorrentRpcUrl: undefined,
+	maxParseRetries: undefined,
 };
 
 function setRuntimeConfig(configObj) {

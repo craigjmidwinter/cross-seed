@@ -69,6 +69,11 @@ async function run() {
 				fallback(fileConfig.searchAll, false)
 			)
 			.requiredOption("-v, --verbose", "Log verbose output", false)
+			.requiredOption(
+				"-p, --max-parse-retries <count>",
+				"Maximum amount of attempts to retry parsing torrents",
+				fallback(fileConfig.maxParseRetries, 3)
+			)
 			.addOption(
 				new Option(
 					"-A, --action <action>",

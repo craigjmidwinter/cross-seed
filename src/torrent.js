@@ -12,10 +12,19 @@ function parseTorrentFromFilename(filename) {
 	return parseTorrent(data);
 }
 
-function parseTorrentFromURL(url) {
+function parseTorrentFromURL(url, retryCount = 0) {
+	const maxRetries = getRuntimeConfig().maxParseRetries;
 	return remote(url).catch((_) => {
-		logger.error(`error parsing torrent at ${url}`);
-		return null;
+		if (retryCount < maxRetries) {
+			retryCount++;
+			logger.warn(
+				`error parsing torrent. Will retry (attempt ${retryCount})`
+			);
+			return parseTorrentFromURL(url, retryCount);
+		} else {
+			logger.error(`error parsing torrent at ${url}`);
+			return null;
+		}
 	});
 }
 

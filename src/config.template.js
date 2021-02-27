@@ -42,4 +42,5 @@ module.exports = {
 	// Only relevant with action: "inject".
 	// Could be something like "http://username:password@localhost:1234/RPC2
 	rtorrentRpcUrl: undefined,
+	maxParseRetries: 3,
 };
